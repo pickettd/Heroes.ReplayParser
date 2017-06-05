@@ -5,9 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Heroes.ReplayParser.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\MpqTool.NetCore\MpqTool.NetCore.csproj" />
   </ItemGroup>
 </Project>
