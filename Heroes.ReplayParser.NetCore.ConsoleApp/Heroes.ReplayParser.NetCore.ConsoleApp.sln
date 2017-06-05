@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MpqTool.NetCore", "..\MpqTool.NetCore\MpqTool.NetCore.csproj", "{0941379D-35DA-4DCF-9E96-7E84740A126C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heroes.ReplayParser.NetCore", "..\Heroes.ReplayParser.NetCore\Heroes.ReplayParser.NetCore.csproj", "{8383A666-49A4-4AB5-A466-F1746969CFDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heroes.ReplayParser.NetCore.ConsoleApp", "Heroes.ReplayParser.NetCore.ConsoleApp.csproj", "{0B3A3236-327A-4FE8-9210-31BA728EF481}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0941379D-35DA-4DCF-9E96-7E84740A126C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0941379D-35DA-4DCF-9E96-7E84740A126C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0941379D-35DA-4DCF-9E96-7E84740A126C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0941379D-35DA-4DCF-9E96-7E84740A126C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8383A666-49A4-4AB5-A466-F1746969CFDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8383A666-49A4-4AB5-A466-F1746969CFDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8383A666-49A4-4AB5-A466-F1746969CFDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8383A666-49A4-4AB5-A466-F1746969CFDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B3A3236-327A-4FE8-9210-31BA728EF481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B3A3236-327A-4FE8-9210-31BA728EF481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B3A3236-327A-4FE8-9210-31BA728EF481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B3A3236-327A-4FE8-9210-31BA728EF481}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

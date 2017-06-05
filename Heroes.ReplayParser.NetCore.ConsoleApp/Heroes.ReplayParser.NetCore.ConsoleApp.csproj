@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Heroes.ReplayParser.NetCore\Heroes.ReplayParser.NetCore.csproj" />
+    <ProjectReference Include="..\MpqTool.NetCore\MpqTool.NetCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="__replays\test.StormReplay" />
+  </ItemGroup>
+</Project>
