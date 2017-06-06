@@ -23,9 +23,9 @@ namespace Heroes.ReplayParser.NetCore.WebAPI.Controllers
                 replayPropNames.Add(replayProp.Name);
             }
 
-            // NOTE: this code assumes that your replays are in the following directories of the project. It just chooses one.
+            // NOTE: this code assumes that your replays are in the wwwroot/replays folder of the project. It just chooses one.
             replay = new Replay();
-            var heroesAccountsFolder = "./__replays";
+            var heroesAccountsFolder = "./wwwroot/replays";
             var randomReplayFileName = Directory.GetFiles(heroesAccountsFolder, "*.StormReplay", SearchOption.AllDirectories).OrderBy(i => Guid.NewGuid()).First();
             Console.WriteLine("File name is " + randomReplayFileName);
 
