@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Buffering;
 
 namespace Heroes.ReplayParser.NetCore.WebAPI
 {
@@ -39,7 +38,6 @@ namespace Heroes.ReplayParser.NetCore.WebAPI
             loggerFactory.AddDebug();
 
             app.UseMvc();
-            app.UseResponseBuffering();
         }
     }
 }
