@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace Heroes.ReplayParser.NetCore.WebAPI
 {
@@ -12,14 +13,16 @@ namespace Heroes.ReplayParser.NetCore.WebAPI
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
+            var configurations = new ConfigurationBuilder()
+		        .AddCommandLine(args)
+		        .Build();
+            new WebHostBuilder()
+		        .UseConfiguration(configurations) 
+		        .UseKestrel()
+		        .UseContentRoot(Directory.GetCurrentDirectory())
+		        .UseStartup<Startup>()
+		        .Build()
+		        .Run();
         }
     }
 }
