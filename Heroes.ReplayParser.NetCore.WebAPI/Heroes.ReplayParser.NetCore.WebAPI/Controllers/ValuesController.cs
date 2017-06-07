@@ -70,9 +70,9 @@ namespace Heroes.ReplayParser.NetCore.WebAPI.Controllers
         }
         // GET api/values
         [HttpGet]
-        public JsonResult Get()
+        public string Get()
         {
-            return Json(replayPropNames);
+            return JsonConvert.SerializeObject(replayPropNames, Formatting.Indented);
         }
         
         // GET api/values/Map etc
