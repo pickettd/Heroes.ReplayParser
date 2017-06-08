@@ -97,7 +97,12 @@
     {
         public TimeSpan TimeSpan { get; set; }
         public Player Player { get; set; } = null;
+        public string TeamID { get; set; } = null;
+        public string WinningTeam { get; set; } = null;
         public TeamObjectiveType TeamObjectiveType { get; set; }
+        public string TeamObjectiveName { get; set; } = null;
+        public string ImmortalFightDuration { get; set; } = null;
+        public string ImmortalPowerPercent { get; set; } = null;
         public int Value { get; set; }
     }
 

@@ -21,7 +21,9 @@ namespace Heroes.ReplayParser
             foreach (var firstCatapultPerTeam in replay.Units.Where(i => i.Name == "CatapultMinion" && i.Team.HasValue).GroupBy(i => i.Team.Value).Select(i => i.OrderBy(j => j.TimeSpanBorn).First()))
                 replay.TeamObjectives[firstCatapultPerTeam.Team.Value].Add(new TeamObjective {
                     TimeSpan = firstCatapultPerTeam.TimeSpanBorn,
+                    TeamID = (firstCatapultPerTeam.Team.Value + 1).ToString(),
                     TeamObjectiveType = TeamObjectiveType.FirstCatapultSpawn,
+                    TeamObjectiveName = "FirstCatapultSpawn",
                     Value = -1 });
 
             // Dragon and Plant Horror
@@ -364,7 +366,11 @@ namespace Heroes.ReplayParser
                             case "Immortal Defeated":               // {StatGameEvent: {"Immortal Defeated", , [{{"Event"}, 1}, {{"Winning Team"}, 1}, {{"Immortal Fight Duration"}, 62}], [{{"Immortal Power Percent"}, 14}]}}
                                 replay.TeamObjectives[trackerEvent.Data.dictionary[2].optionalData.array[1].dictionary[1].vInt.Value - 1].Add(new TeamObjective {
                                     TimeSpan = trackerEvent.TimeSpan,
+                                    WinningTeam = (trackerEvent.Data.dictionary[2].optionalData.array[1].dictionary[1].vInt.Value).ToString(),
                                     TeamObjectiveType = TeamObjectiveType.BattlefieldOfEternityImmortalFightEndWithPowerPercent,
+                                    TeamObjectiveName = "Immortal Defeated",
+                                    ImmortalFightDuration = (trackerEvent.Data.dictionary[2].optionalData.array[2].dictionary[1].vInt.Value).ToString(),
+                                    ImmortalPowerPercent = (trackerEvent.Data.dictionary[3].optionalData.array[0].dictionary[1].vInt.Value).ToString(),
                                     Value = (int) trackerEvent.Data.dictionary[3].optionalData.array[0].dictionary[1].vInt.Value });
                                 break;
                             case "Boss Duel Started": break;        // {StatGameEvent: {"Boss Duel Started", , [{{"Boss Duel Number"}, 1}], }}
