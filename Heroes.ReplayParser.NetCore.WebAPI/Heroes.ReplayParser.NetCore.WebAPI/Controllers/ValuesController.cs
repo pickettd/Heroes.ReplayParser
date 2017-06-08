@@ -36,7 +36,7 @@ namespace Heroes.ReplayParser.NetCore.WebAPI.Controllers
             {
                 // Attempt to parse the replay
                 // Ignore errors can be set to true if you want to attempt to parse currently unsupported replays, such as 'VS AI' or 'PTR Region' replays
-                var replayParseResult = DataParser.ParseReplay(randomReplayFileName, ignoreErrors: false, deleteFile: false);
+                var replayParseResult = DataParser.ParseReplay(randomReplayFileName, ignoreErrors: false, deleteFile: false, allowPTRRegion: true);
 
                 // If successful, the Replay object now has all currently available information
                 if (replayParseResult.Item1 == DataParser.ReplayParseResult.Success)
