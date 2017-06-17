@@ -47,6 +47,11 @@
         /// <summary> Gets the list of all clients connected to the game, using 'm_workingSetSlotId' as index </summary>
         public Player[] ClientListByWorkingSetSlotID { get; set; } = new Player[16];
 
+        /// <summary> Gets the list of damage done to immortals by each player </summary>
+        public Dictionary<string, string>[] DamageDoneToImmortal { get; set; } = new Dictionary<string, string>[16];
+        // To get all player info can do it this way instead:
+        //public Player[] DamageDoneToImmortal { get; set; } = new Player[16];
+
         /// <summary> Gets the game events. </summary>
         public List<GameEvent> GameEvents { get; set; } = new List<GameEvent>();
 

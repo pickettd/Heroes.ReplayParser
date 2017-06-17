@@ -4,6 +4,7 @@ namespace Heroes.ReplayParser
 {
     using System;
     using System.IO;
+    using System.Collections.Generic;
 
     public static class ReplayDetails
     {
@@ -37,9 +38,19 @@ namespace Heroes.ReplayParser
                         // Try Me Mode, or something strange
                         return;
 
-                    for (var i = 0; i < replay.Players.Length; i++)
-                        if (replayDetailsStructure.dictionary[0].optionalData.array[i].dictionary[9].optionalData != null)
-                            replay.ClientListByWorkingSetSlotID[replayDetailsStructure.dictionary[0].optionalData.array[i].dictionary[9].optionalData.vInt.Value] = replay.Players[i];
+                for (var i = 0; i < replay.Players.Length; i++)
+                    if (replayDetailsStructure.dictionary[0].optionalData.array[i].dictionary[9].optionalData != null)
+                    {
+                        replay.ClientListByWorkingSetSlotID[replayDetailsStructure.dictionary[0].optionalData.array[i].dictionary[9].optionalData.vInt.Value] = replay.Players[i];
+
+                        replay.DamageDoneToImmortal[replayDetailsStructure.dictionary[0].optionalData.array[i].dictionary[9].optionalData.vInt.Value] = new Dictionary<string, string>();
+                        replay.DamageDoneToImmortal[replayDetailsStructure.dictionary[0].optionalData.array[i].dictionary[9].optionalData.vInt.Value].Add("PlayerIndex", i.ToString());
+
+                        // You can use the following if you setup replay.DamageDoneToImmortal[] to be Player[] type and if you don't want all that extra movement etc data filled in
+                        //replay.DamageDoneToImmortal[replayDetailsStructure.dictionary[0].optionalData.array[i].dictionary[9].optionalData.vInt.Value] = new Player();
+                        // Otherwise if you want all player data can fill in with:
+                        //replay.DamageDoneToImmortal[replayDetailsStructure.dictionary[0].optionalData.array[i].dictionary[9].optionalData.vInt.Value] = replay.Players[i];
+                    }
                         else
                             // Less than 0.1% of replays seem to be missing this.  I'm not sure why
                             return;

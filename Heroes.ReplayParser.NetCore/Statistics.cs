@@ -594,8 +594,8 @@ namespace Heroes.ReplayParser
                                 case "EndOfMatchAwardMostGemsTurnedInBoolean":
                                 case "EndOfMatchAwardMostAltarDamageDone":
                                 case "EndOfMatchAwardMostNukeDamageDoneBoolean":
-								case "EndOfMatchAwardMostSkullsCollectedBoolean":
-								case "EndOfMatchAwardMostTimePushingBoolean":
+                                case "EndOfMatchAwardMostSkullsCollectedBoolean":
+                                case "EndOfMatchAwardMostTimePushingBoolean":
 
                                 case "EndOfMatchAwardMostKillsBoolean":
                                 case "EndOfMatchAwardHatTrickBoolean":
@@ -680,14 +680,14 @@ namespace Heroes.ReplayParser
                                                 case "EndOfMatchAwardMostNukeDamageDoneBoolean":
                                                     replay.ClientListByWorkingSetSlotID[i].ScoreResult.MatchAwards.Add(MatchAwardType.MostNukeDamageDone);
                                                     break;
-												case "EndOfMatchAwardMostSkullsCollectedBoolean":
-													replay.ClientListByWorkingSetSlotID[i].ScoreResult.MatchAwards.Add(MatchAwardType.MostSkullsCollected);
-													break;
-												case "EndOfMatchAwardMostTimePushingBoolean":
-													replay.ClientListByWorkingSetSlotID[i].ScoreResult.MatchAwards.Add(MatchAwardType.MostTimePushing);
-													break;
+                                                case "EndOfMatchAwardMostSkullsCollectedBoolean":
+                                                    replay.ClientListByWorkingSetSlotID[i].ScoreResult.MatchAwards.Add(MatchAwardType.MostSkullsCollected);
+                                                    break;
+                                                case "EndOfMatchAwardMostTimePushingBoolean":
+                                                    replay.ClientListByWorkingSetSlotID[i].ScoreResult.MatchAwards.Add(MatchAwardType.MostTimePushing);
+                                                    break;
 
-												case "EndOfMatchAwardMostKillsBoolean":
+                                                case "EndOfMatchAwardMostKillsBoolean":
                                                     replay.ClientListByWorkingSetSlotID[i].ScoreResult.MatchAwards.Add(MatchAwardType.MostKills);
                                                     break;
                                                 case "EndOfMatchAwardHatTrickBoolean":
@@ -739,11 +739,11 @@ namespace Heroes.ReplayParser
                                 case "TeamTakedowns":
                                 case "Role":
                                 case "EndOfMatchAwardGivenToNonwinner":
-								case "OnFireTimeOnFire":
+                                case "OnFireTimeOnFire":
 
-								// New Stats Added in PTR 12/6/2016
-								// Currently all 0 values - if these are filled in, let's add them to the Player.ScoreResult object
-								case "ProtectionGivenToAllies":
+                                // New Stats Added in PTR 12/6/2016
+                                // Currently all 0 values - if these are filled in, let's add them to the Player.ScoreResult object
+                                case "ProtectionGivenToAllies":
                                 case "TimeSilencingEnemyHeroes":
                                 case "TimeRootingEnemyHeroes":
                                 case "TimeStunningEnemyHeroes":
@@ -766,14 +766,13 @@ namespace Heroes.ReplayParser
                                 case "AltarDamageDone":
                                 case "CurseDamageDone":
                                 case "GardensPlantDamage":
-                                case "DamageDoneToImmortal":
                                 case "RavenTributesCollected":
                                 case "GardensSeedsCollected":
                                 case "BlackheartDoubloonsCollected":
                                 case "BlackheartDoubloonsTurnedIn":
                                 case "MinesSkullsCollected":
                                 case "NukeDamageDone":
-								case "TimeOnPayload":
+                                case "TimeOnPayload":
 
                                 // Special Events
                                 case "LunarNewYearEventCompleted":           // Early 2016
@@ -824,6 +823,27 @@ namespace Heroes.ReplayParser
                                     for (var i = 0; i < scoreResultEventValueArray.Length; i++)
                                         if (scoreResultEventValueArray[i].HasValue)
                                             replay.ClientListByWorkingSetSlotID[i].MiscellaneousScoreResultEventDictionary[scoreResultEventKey] = scoreResultEventValueArray[i].Value;
+                                    break;
+
+                                case "DamageDoneToImmortal":
+
+                                    for (var i = 0; i < scoreResultEventValueArray.Length; i++)
+                                    {
+                                        if (scoreResultEventValueArray[i].HasValue)
+                                        {
+                                            replay.ClientListByWorkingSetSlotID[i].MiscellaneousScoreResultEventDictionary[scoreResultEventKey] = scoreResultEventValueArray[i].Value;
+
+                                            // Pulling hero information this way right now because our replay character names are in Korean
+                                            replay.DamageDoneToImmortal[i].Add(scoreResultEventKey, scoreResultEventValueArray[i].Value.ToString());
+                                            var playerIndex = int.Parse(replay.DamageDoneToImmortal[i]["PlayerIndex"]);
+                                            replay.DamageDoneToImmortal[i].Add("First Hero Unit", replay.Players[playerIndex].HeroUnits[0].Name);
+                                            replay.DamageDoneToImmortal[i].Add("SkinAndSkinTint", replay.Players[playerIndex].SkinAndSkinTint);
+                                            replay.DamageDoneToImmortal[i].Add("Character Name", replay.Players[playerIndex].Character);
+
+                                            // You can use the following if you setup replay.DamageDoneToImmortal[] to be Player[]
+                                            //replay.DamageDoneToImmortal[i].MiscellaneousScoreResultEventDictionary[scoreResultEventKey] = scoreResultEventValueArray[i].Value;
+                                        }
+                                    }
                                     break;
 
                                 default:
